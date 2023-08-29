@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "dagre": "0.8.5",
+    "elkjs": "0.8.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^4.0.0",
+    "reactflow": "11.7.4",
+    "styled-components": "5.3.9"
+  },
+  "main": "/index.js",
+  "devDependencies": {},
+  "keywords": [],
+  "name": "abyz-shezire-map-static",
+  "description": ""
+}
