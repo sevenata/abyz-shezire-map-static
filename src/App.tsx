@@ -2,10 +2,8 @@ import React, {useEffect, useRef, useState} from "react";
 
 import {darkTheme, GraphCanvas, GraphCanvasRef} from 'reagraph';
 
-const {edges:defaultEdges, nodes:defaultNodes} = require("./nodes");
-
-const initialNodes = defaultNodes || [];
-const initialEdges = defaultEdges || [];
+const initialNodes = [];
+const initialEdges = [];
 
 // @ts-ignore
 const ReactNativeWebView = window.ReactNativeWebView || {
