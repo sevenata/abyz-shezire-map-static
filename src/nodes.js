@@ -1,5 +1,3 @@
-const { Position } = require("reactflow");
-
 const input = [
   {
     id: "39100953-1e14-4246-892a-cc4dc6f58e23",
@@ -155,7 +153,7 @@ const input = [
 let nodes = [];
 let edges = [];
 let position = { x: 0, y: 0 };
-let edgeType = "bezier";
+let edgeType = "simplebezier";
 
 const pastelColors = [
   "#FFD1DC", // Pastel Pink
@@ -173,9 +171,10 @@ const pastelColors = [
 function traverse(node, parentId = null, level = 0) {
   nodes.push({
     id: node.id,
-    data: { label: node.name, level },
-    type: "custom",
-    position
+    label: node.name,
+    // data: { label: node.name, level },
+    // type: "custom",
+    // position
   });
 
   if (parentId) {
@@ -183,11 +182,11 @@ function traverse(node, parentId = null, level = 0) {
       id: `e${parentId}${node.id}`,
       source: parentId,
       target: node.id,
-      type: edgeType,
-      style: {
-        stroke: pastelColors[level]
-      },
-      animated: true
+      // type: edgeType,
+      // style: {
+      //   stroke: pastelColors[level]
+      // },
+      // animated: true
     });
   }
 
