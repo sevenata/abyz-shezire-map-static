@@ -23,7 +23,7 @@ const LayoutFlow = () => {
     const [node, setNode] = useState<string>();
 
     useEffect(() => {
-        const messageListener = document.addEventListener('message', (nativeEvent) => {
+        const messageListener = window.addEventListener('message', (nativeEvent) => {
             // @ts-ignore
             // alert(nativeEvent.data)
             try {
