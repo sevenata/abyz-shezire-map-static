@@ -15,9 +15,9 @@ const ReactNativeWebView = window.ReactNativeWebView || {
 const LayoutFlow = () => {
 
     // @ts-ignore
-    const [nodes, setNodes] = useState([]);
+    const [nodes, setNodes] = useState(window.nodes ?? []);
     // @ts-ignore
-    const [edges, setEdges] = useState([]);
+    const [edges, setEdges] = useState(window.edges ?? []);
     const ref = useRef<GraphCanvasRef>(null);
 
     const [node, setNode] = useState<string>();
@@ -25,7 +25,7 @@ const LayoutFlow = () => {
     useEffect(() => {
         const isAndroid = navigator.appVersion.includes('Android');
         const root = isAndroid ? document : window;
-        const messageListener = window.addEventListener('message', (nativeEvent) => {
+        const messageListener = root.addEventListener('message', (nativeEvent) => {
             // @ts-ignore
             // alert(nativeEvent.data)
             try {
@@ -38,7 +38,7 @@ const LayoutFlow = () => {
                     // alert(JSON.stringify({
                     //     node, r: ref.current
                     // }))
-                    console.info('b', node, ref.current)
+                    // console.info('b', node, ref.current)
                     if(node){
                         // ref.current?.centerGraph([node]);
                         setNode(undefined);
