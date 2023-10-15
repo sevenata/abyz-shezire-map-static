@@ -25,7 +25,7 @@ const LayoutFlow = () => {
     useEffect(() => {
         const isAndroid = navigator.appVersion.includes('Android');
         const root = isAndroid ? document : window;
-        const messageListener = root.addEventListener('message', (nativeEvent) => {
+        const messageListener = window.addEventListener('message', (nativeEvent) => {
             // @ts-ignore
             // alert(nativeEvent.data)
             try {
