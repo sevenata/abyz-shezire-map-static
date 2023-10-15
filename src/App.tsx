@@ -23,7 +23,9 @@ const LayoutFlow = () => {
     const [node, setNode] = useState<string>();
 
     useEffect(() => {
-        const messageListener = window.addEventListener('message', (nativeEvent) => {
+        const isAndroid = navigator.appVersion.includes('Android');
+        const root = isAndroid ? document : window;
+        const messageListener = root.addEventListener('message', (nativeEvent) => {
             // @ts-ignore
             // alert(nativeEvent.data)
             try {
