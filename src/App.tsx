@@ -15,17 +15,21 @@ const ReactNativeWebView = window.ReactNativeWebView || {
 const LayoutFlow = () => {
 
     // @ts-ignore
-    const [nodes, setNodes] = useState(window.nodes ?? []);
+    const [nodes, setNodes] = useState([]);
     // @ts-ignore
-    const [edges, setEdges] = useState(window.edges ?? []);
+    const [edges, setEdges] = useState([]);
     const ref = useRef<GraphCanvasRef>(null);
 
     const [node, setNode] = useState<string>();
 
     useEffect(() => {
-        const messageListener = window.addEventListener('message', (nativeEvent) => {
+        const messageListener = document.addEventListener('message', (nativeEvent) => {
+            // @ts-ignore
+            // alert(nativeEvent.data)
             try {
-                const data = JSON.parse(nativeEvent.data);
+                // @ts-ignore
+                const rawData = nativeEvent.data;
+                const data = JSON.parse(rawData);
                 if(data.type === 'update'){
                     setNodes(data.nodes);
                     setEdges(data.edges);
@@ -38,8 +42,8 @@ const LayoutFlow = () => {
                         setNode(undefined);
                     }
                 }
-            }catch (e) {
-                // alert("ERROR" + JSON.stringify(e));
+            }catch (e:any) {
+                // alert(JSON.stringify(e.message));
             }
         });
         return messageListener;
@@ -51,6 +55,10 @@ const LayoutFlow = () => {
         const message = {nodeId, type: 'press'}
         ReactNativeWebView.postMessage(JSON.stringify(message));
     };
+
+    if(!edges?.length || !nodes.length) {
+        return null;
+    }
 
   return (
       <GraphCanvas
