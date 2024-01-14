@@ -10,6 +10,7 @@
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.1",
     "reactflow": "11.7.4",
+    "reaflow": "^5.2.8",
     "reagraph": "^4.14.1",
     "styled-components": "5.3.9",
     "typescript": "^5.2.2"
