@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 
 import {darkTheme, GraphCanvas, GraphCanvasRef} from 'reagraph';
-import {Canvas, CanvasRef, Node} from "reaflow";
+import {Canvas, CanvasRef, Edge, Label, Node} from "reaflow";
 
 const initialNodes = [];
 const initialEdges = [];
@@ -18,12 +18,18 @@ const LayoutFlow = () => {
     const mapNode = (v:any)=>({
         id: v.id,
         text: v.label,
+        data: {
+            source: v.shezhireSource,
+        }
     })
 
     const mapEdge = (v:any)=>({
         id: v.id,
         from: v.source,
         to: v.target,
+        data: {
+            source: v.shezhireSource,
+        }
     });
 
     // @ts-ignore
@@ -78,23 +84,26 @@ const LayoutFlow = () => {
         // node={Node}
         minZoom={-0.75}
         maxZoom={1}
-        maxWidth={5e3}
-        maxHeight={5e3}
-        node={<Node onClick={(event, data) => {
+        maxWidth={10e3}
+        maxHeight={10e3}
+        node={(node)=><Node
+            {...node}
+            style={{ stroke: node.properties?.data?.source === 'abyz' ? '#c9a22766' : '#38a3a566',
+                fill: node.properties?.data?.source === 'abyz' ? '#926c1566' : '#22577a66',
+                strokeWidth: 1 }}
+            onClick={(event, data) => {
             setNode(data.id);
             sendMessage(data.id);
         }}/>}
-        // arrow={<MarkerArrow style={{ fill: gray400 }} />}
-        // edge={
-        //     <Edge
-        //         style={{ stroke: gray300 }}
-        //         onClick={(event, edge) => {
-        //             console.log("Selecting Edge", event, edge);
-        //         }}
-        //     />
-        // }
-        // onLayoutChange={(layout) => console.log("Layout", layout)}
-        // readonly
+
+        edge={(edge)=>{
+            // alert(JSON.stringify(edge.properties?.data));
+            return <Edge
+                {...edge}
+                // @ts-ignore
+                style={{ stroke: edge.properties?.data?.source === 'abyz' ? '#c9a227' : '#38a3a5'}}
+            />
+        }}
     />
 
   // return (
