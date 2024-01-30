@@ -33,9 +33,9 @@ const LayoutFlow = () => {
     });
 
     // @ts-ignore
-    const [nodes, setNodes] = useState(window.nodes.map(v=>mapNode(v)) ?? []);
+    const [nodes, setNodes] = useState(window.nodes?.map(v=>mapNode(v)) ?? []);
     // @ts-ignore
-    const [edges, setEdges] = useState(window.edges.map(v=>mapEdge(v)) ?? []);
+    const [edges, setEdges] = useState(window.edges?.map(v=>mapEdge(v)) ?? []);
     // const ref = useRef<GraphCanvasRef>(null);
 
     const [node, setNode] = useState<string>();
