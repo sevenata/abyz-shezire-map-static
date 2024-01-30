@@ -14,4 +14,4 @@ setTimeout(()=>{
             </StrictMode>
         );
     }
-}, 3e3);
+}, 1e3);
